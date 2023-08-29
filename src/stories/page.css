@@ -5,7 +5,7 @@
   padding: 48px 20px;
   margin: 0 auto;
   max-width: 600px;
-  color: #333;
+  color: red;
 }
 
 .storybook-page h2 {
@@ -18,7 +18,7 @@
 }
 
 .storybook-page p {
-  margin: 1em 0;
+  margin: 8em 0;
 }
 
 .storybook-page a {
