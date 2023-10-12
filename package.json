@@ -9,7 +9,7 @@
     "lint": "next lint",
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build  -s public"
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@types/node": "20.5.7",
