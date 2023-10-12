@@ -9,7 +9,7 @@
     "lint": "next lint",
     "format:fix": "prettier --write --ignore-path .gitignore .",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build  -s public"
   },
   "dependencies": {
     "@types/node": "20.5.7",
@@ -39,5 +39,8 @@
     "prettier": "3.0.2",
     "prettier-plugin-tailwindcss": "0.5.3",
     "storybook": "^7.3.2"
+  },
+  "engines": {
+    "node": ">=16.0.0 <17"
   }
 }
