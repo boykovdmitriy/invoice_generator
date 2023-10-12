@@ -16,6 +16,11 @@ jobs:
     runs-on: ubuntu-latest
     # Job steps
     steps:
+      - name: Use Node.js v16.20.0 (LTS)
+        uses: actions/setup-node@v2
+        with:
+          node-version: '16.20.0'
+
       - uses: actions/checkout@v1
       - name: Install dependencies
         # 👇 Install dependencies with the same package manager used in the project (replace it as needed), e.g. yarn, npm, pnpm
@@ -27,3 +32,4 @@ jobs:
         with:
           # 👇 Chromatic projectToken, refer to the manage page to obtain it.
           projectToken: ${{ secrets.CHROMATIC_PROJECT_TOKEN }}
+          storybookBuildDir: 'public'
