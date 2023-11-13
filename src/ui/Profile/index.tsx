@@ -73,8 +73,7 @@ export const ProfileComponent = ({ user }: { user: UserProfile }) => {
 };
 
 const Profile = () => {
-  const { user, isLoading } = useUser();
-  const [isOpen, setIsOpen] = useState(false);
+  const { user } = useUser();
 
   if (!user) return null;
 

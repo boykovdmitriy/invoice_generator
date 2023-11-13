@@ -1,6 +1,6 @@
-import { getSession } from "@auth0/nextjs-auth0";
-import Profile from "./ui/Profile";
-import Button from "./ui/Button";
+import { getSession, getAccessToken } from "@auth0/nextjs-auth0";
+import Profile from "@/ui/Profile";
+import Button from "@/ui/Button";
 
 export default async function Home() {
   const session = await getSession();
@@ -22,7 +22,7 @@ export default async function Home() {
           )}
         </div>
       </div>
-
+      <Profile />
       <div className="w-full flex flex-col items-center justify-center mt-10">
         <div className="p-10 rounded shadow-xl w-1/2">
           <p className="text-xl mb-5 flex flex-col text-center">
