@@ -1,12 +1,23 @@
-import { getModelForClass, prop } from "@typegoose/typegoose";
+import { getModelForClass, modelOptions, prop } from "@typegoose/typegoose";
 import mongoose from "mongoose";
+import { User } from "./user";
+import { Company } from "./company";
 
+@modelOptions({ schemaOptions: { collection: "invoice" } })
 class InvoiceClass {
-  @prop({ required: true })
-  userId: mongoose.Types.ObjectId | string;
+  @prop({
+    required: true,
+    ref: () => User,
+    type: mongoose.Types.ObjectId,
+  })
+  userId: mongoose.Types.ObjectId;
 
-  @prop({ required: true })
-  companyId: mongoose.Types.ObjectId | string;
+  @prop({
+    required: true,
+    ref: () => Company,
+    type: mongoose.Types.ObjectId,
+  })
+  companyId: mongoose.Types.ObjectId;
 
   @prop({ required: true })
   serialNumber: number;
@@ -27,10 +38,8 @@ class InvoiceClass {
 
   total?: number;
 
-  _id: mongoose.Types.ObjectId | string;
-
-  id: string;
+  _id: mongoose.Types.ObjectId;
 }
 
-const Invoice = getModelForClass(InvoiceClass);
+const Invoice = mongoose.models.invoice || getModelForClass(InvoiceClass);
 export { Invoice, InvoiceClass };

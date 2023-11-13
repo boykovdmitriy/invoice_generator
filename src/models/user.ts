@@ -1,7 +1,12 @@
-import { getModelForClass, prop } from "@typegoose/typegoose";
+import { getModelForClass, modelOptions, prop } from "@typegoose/typegoose";
+import mongoose from "mongoose";
 
+@modelOptions({
+  schemaOptions: { collection: "user" },
+  options: { customName: "user" },
+})
 class UserClass {
-  @prop({ required: true })
+  @prop({ required: true, unique: true })
   remoteUserId: string;
 
   @prop({ required: true })
@@ -14,8 +19,8 @@ class UserClass {
 
   paymentDetails: string;
 
-  _id: string;
+  _id: mongoose.Types.ObjectId;
 }
 
-const User = getModelForClass(UserClass);
+const User = mongoose.models.user || getModelForClass(UserClass);
 export { User, UserClass };

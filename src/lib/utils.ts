@@ -1,4 +1,5 @@
 import mongoose from "mongoose";
+import { NextApiRequest, NextApiResponse } from "next";
 import { NextResponse } from "next/server";
 
 export function stringToObjectId(id: string): mongoose.Types.ObjectId | null {
@@ -22,4 +23,23 @@ export function createErrorResponse(
     status: statusCode,
     headers: { "Content-Type": "application/json" },
   });
+}
+
+export function withErrorHandler(
+  handler: (
+    req: NextApiRequest,
+    res: NextApiResponse
+  ) => Promise<void | NextResponse<unknown>> | NextResponse<unknown>
+): (
+  req: NextApiRequest,
+  res: NextApiResponse
+) => Promise<void | NextResponse<unknown>> | NextResponse<unknown> {
+  return async (req: NextApiRequest, res: NextApiResponse) => {
+    try {
+      return await handler(req, res);
+    } catch (error: any) {
+      console.error(error);
+      return createErrorResponse(error.message, 500);
+    }
+  };
 }
